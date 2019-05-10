@@ -1,0 +1,27 @@
+{
+  "package": {
+    "name": "kstitch",
+    "repo": "fortytwoapps",
+    "subject": "robert-cronin",
+    "desc": "A Kotlin/JS Toolkit for the MongoDB Stitch API",
+    "website_url": "https://github.com/fortytwoapps/kstitch",
+    "issue_tracker_url": "https://github.com/fortytwoapps/kstitch/issues",
+    "vcs_url": "https://github.com/fortytwoapps/kstitch.git",
+    "licenses": ["Apache-2.0"],
+    "labels": ["kotlin", "bintray", "gradle"],
+    "public_download_numbers": false,
+    "public_stats": false
+  },
+
+  "version": {
+    "name": "0.0.1",
+    "released": "2019-05-08",
+    "gpgSign": false
+  },
+
+  "files":
+  [
+    {"includePattern": "build/libs/(.*)", "uploadPattern": "fortytwoapps/ktitch/0.0.1/$1"}
+  ],
+  "publish": true
+}

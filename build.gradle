@@ -1,0 +1,89 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = 'https://dl.bintray.com/kotlin/kotlin-eap' }
+        maven { url = 'https://kotlin.bintray.com/kotlinx' }
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:${frontendPluginVersion}"
+    }
+}
+apply plugin: 'kotlin2js'
+apply plugin: 'kotlin-platform-js'
+apply plugin: 'org.jetbrains.kotlin.frontend'
+apply plugin: 'kotlinx-serialization'
+apply plugin: 'maven-publish'
+
+group 'com.fortytwoapps'
+version '0.0.1'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            pom.withXml {
+                asNode().dependencies.'*'.findAll() {
+                    it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
+                        dep.name == it.artifactId.text()
+                    }
+                }.each() {
+                    it.scope*.value = 'compile'
+                }
+            }
+        }
+    }
+}
+
+model {
+    tasks.generatePomFileForMavenPublication {
+        destination = file("$buildDir/libs/kstitch-0.0.1.pom")
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url = "https://dl.bintray.com/kotlin/kotlin-eap" }
+    maven { url = "https://plugins.gradle.org/m2/" }
+    maven { url = "https://bintray.com/kotlin/kotlin-eap/dokka" }
+    maven { url = "https://kotlin.bintray.com/kotlinx" }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-js"
+    compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$serializationVersion"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-js"
+}
+
+kotlinFrontend {
+    npm {
+        dependency("mongodb-stitch-browser-sdk", "4.3.1")
+        devDependency("karma", "3.1.4")
+        devDependency("karma-chrome-launcher", "2.2.0")
+    }
+}
+
+compileKotlin2Js {
+    kotlinOptions.metaInfo = true
+    kotlinOptions.outputFile = "$project.buildDir.path/js/${project.name}.js"
+    kotlinOptions.moduleKind = 'umd'
+}
+
+compileTestKotlin2Js {
+    kotlinOptions.metaInfo = true
+    kotlinOptions.outputFile = "$project.buildDir.path/js-tests/${project.name}-tests.js"
+    kotlinOptions.moduleKind = 'umd'
+}
+
+task copyResources(type: Copy) {
+    from "src/main/resources"
+    into file(buildDir.path + "/js")
+}
+
+task copyResourcesForTests(type: Copy) {
+    from "src/main/resources"
+    into file(buildDir.path + "/js-tests/")
+}
+
