@@ -1,8 +1,8 @@
-[ ![Download](https://api.bintray.com/packages/robert-cronin/fortytwoapps/kt-cookies/images/download.svg) ](https://bintray.com/robert-cronin/fortytwoapps/kt-cookies/_latestVersion)
-[![Build Status](https://travis-ci.org/fortytwoapps/kt-cookies.svg?branch=master)](https://travis-ci.org/fortytwoapps/kt-cookies)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Download](https://api.bintray.com/packages/robert-cronin/fortytwoapps/kt-cookies/images/download.svg) ](https://bintray.com/robert-cronin/fortytwoapps/kstitch/_latestVersion)
+[![Build Status](https://travis-ci.org/fortytwoapps/kstitch.svg?branch=master)](https://travis-ci.org/fortytwoapps/kstitch)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 # KStitch
-A Kotlin/JS Toolkit for the MongoDB Stitch API. This tool kit will also support an ODM in the future, watch this space!
+A Kotlin/JS Toolkit for the MongoDB Stitch API. This tool kit will also support an ODM (Object Document Mapper) in the future, watch this space!
 
 Heavily inspired by KMongo: https://github.com/Litote/kmongo
 
