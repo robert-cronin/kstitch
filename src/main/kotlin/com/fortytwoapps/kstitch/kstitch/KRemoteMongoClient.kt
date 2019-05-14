@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-@file:JsModule("extModule")
-package com.fortytwoapps.kstitch.browser
+package com.fortytwoapps.kstitch.kstitch
 
-import kotlin.js.Promise
+import com.fortytwoapps.kstitch.browser.*
 
-external class RemoteMongoReadOperation<T> {
-    fun asArray(): Promise<Array<T>>
-    fun first(): Promise<T>? = definedExternally
-    fun iterator(): Promise<RemoteMongoCursor<T>>
+class KRemoteMongoClient(private val jsRemoteMongoClient: RemoteMongoClient) {
+    fun db(name: String): KRemoteMongoDatabase {
+        return KRemoteMongoDatabase(jsRemoteMongoClient.db(name))
+    }
 }

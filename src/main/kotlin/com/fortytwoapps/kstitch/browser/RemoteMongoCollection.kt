@@ -25,39 +25,39 @@ external interface RemoteMongoCollection<T> {
     var namespace: String
 
     // aggregate
-    fun aggregate(pipeline: Array<Any>): com.fortytwoapps.kstitch.browser.RemoteMongoReadOperation<dynamic>
+    fun aggregate(pipeline: Array<Any>): RemoteMongoReadOperation<dynamic>
     // count
-    fun count(query: dynamic, options: com.fortytwoapps.kstitch.browser.RemoteCountOptions): Promise<Int>
+    fun count(query: dynamic, options: RemoteCountOptions): Promise<Int>
     fun count(query: dynamic): Promise<Int>
     // deleteMany
-    fun deleteMany(query: dynamic): Promise<com.fortytwoapps.kstitch.browser.RemoteDeleteResult>
+    fun deleteMany(query: dynamic): Promise<RemoteDeleteResult>
     // deleteOne
-    fun deleteOne(query: dynamic): Promise<com.fortytwoapps.kstitch.browser.RemoteDeleteResult>
+    fun deleteOne(query: dynamic): Promise<RemoteDeleteResult>
     // find
-    fun find(query: dynamic, options: com.fortytwoapps.kstitch.browser.RemoteFindOptions): com.fortytwoapps.kstitch.browser.RemoteMongoReadOperation<dynamic>
-    fun find(query: dynamic): com.fortytwoapps.kstitch.browser.RemoteMongoReadOperation<dynamic>
+    fun find(query: dynamic, options: RemoteFindOptions): RemoteMongoReadOperation<dynamic>
+    fun find(query: dynamic): RemoteMongoReadOperation<dynamic>
     // findOne
-    fun findOne(query: dynamic, options: com.fortytwoapps.kstitch.browser.RemoteFindOptions): com.fortytwoapps.kstitch.browser.RemoteMongoReadOperation<dynamic>
-    fun findOne(query: dynamic): com.fortytwoapps.kstitch.browser.RemoteMongoReadOperation<dynamic>
+    fun findOne(query: dynamic, options: RemoteFindOptions): Promise<dynamic>
+    fun findOne(query: dynamic): Promise<dynamic>
     // findOneAndDelete
-    fun findOneAndDelete(query: dynamic, options: com.fortytwoapps.kstitch.browser.RemoteFindOneAndModifyOptions): Promise<dynamic>
+    fun findOneAndDelete(query: dynamic, options: RemoteFindOneAndModifyOptions): Promise<dynamic>
     fun findOneAndDelete(query: dynamic): Promise<dynamic>
     // findOneAndReplace
-    fun findOneAndReplace(query: dynamic, replacement: dynamic, options: com.fortytwoapps.kstitch.browser.RemoteFindOneAndModifyOptions): Promise<dynamic>
+    fun findOneAndReplace(query: dynamic, replacement: dynamic, options: RemoteFindOneAndModifyOptions): Promise<dynamic>
     fun findOneAndReplace(query: dynamic, replacement: dynamic): Promise<dynamic>
     // findOneAndReplace
-    fun findOneAndUpdate(query: dynamic, update: dynamic, options: com.fortytwoapps.kstitch.browser.RemoteFindOneAndModifyOptions): Promise<dynamic>
+    fun findOneAndUpdate(query: dynamic, update: dynamic, options: RemoteFindOneAndModifyOptions): Promise<dynamic>
     fun findOneAndUpdate(query: dynamic, update: dynamic): Promise<dynamic>
     // insertMany
-    fun insertMany(documents: dynamic): Promise<com.fortytwoapps.kstitch.browser.RemoteInsertManyResult>
+    fun insertMany(documents: dynamic): Promise<RemoteInsertManyResult>
     // insertOne
-    fun insertOne(document: dynamic): Promise<com.fortytwoapps.kstitch.browser.RemoteInsertOneResult>
+    fun insertOne(document: dynamic): Promise<RemoteInsertOneResult>
     // updateMany
-    fun updateMany(query: dynamic, update: dynamic, updateOptions: com.fortytwoapps.kstitch.browser.RemoteUpdateOptions? = definedExternally): Promise<com.fortytwoapps.kstitch.browser.RemoteUpdateResult>
-    fun updateMany(query: dynamic, update: dynamic): Promise<com.fortytwoapps.kstitch.browser.RemoteUpdateResult>
+    fun updateMany(query: dynamic, update: dynamic, updateOptions: RemoteUpdateOptions? = definedExternally): Promise<RemoteUpdateResult>
+    fun updateMany(query: dynamic, update: dynamic): Promise<RemoteUpdateResult>
     // updateOne
-    fun updateOne(query: dynamic, update: dynamic, updateOptions: com.fortytwoapps.kstitch.browser.RemoteUpdateOptions? = definedExternally): Promise<com.fortytwoapps.kstitch.browser.RemoteUpdateResult>
-    fun updateOne(query: dynamic, update: dynamic): Promise<com.fortytwoapps.kstitch.browser.RemoteUpdateResult>
+    fun updateOne(query: dynamic, update: dynamic, updateOptions: RemoteUpdateOptions? = definedExternally): Promise<RemoteUpdateResult>
+    fun updateOne(query: dynamic, update: dynamic): Promise<RemoteUpdateResult>
     // watch
-    fun watch(ids: Array<dynamic>): Promise<com.fortytwoapps.kstitch.browser.Stream<com.fortytwoapps.kstitch.browser.ChangeEvent<dynamic>>>
+    fun watch(ids: Array<dynamic>): Promise<Stream<ChangeEvent<dynamic>>>
 }

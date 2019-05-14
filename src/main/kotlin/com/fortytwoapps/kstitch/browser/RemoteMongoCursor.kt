@@ -23,5 +23,4 @@ import kotlin.js.Promise
 external class RemoteMongoCursor<T>(proxy: Iterator<T>) {
     var proxy: Iterator<T>
     fun next(): Promise<T>? = definedExternally
-
 }
