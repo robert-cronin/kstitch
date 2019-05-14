@@ -1,4 +1,4 @@
-[![Download](https://api.bintray.com/packages/robert-cronin/fortytwoapps/kt-cookies/images/download.svg) ](https://bintray.com/robert-cronin/fortytwoapps/kstitch/_latestVersion)
+[![Download](https://api.bintray.com/packages/robert-cronin/fortytwoapps/kstitch/images/download.svg) ](https://bintray.com/robert-cronin/fortytwoapps/kstitch/_latestVersion)
 [![Build Status](https://travis-ci.org/fortytwoapps/kstitch.svg?branch=master)](https://travis-ci.org/fortytwoapps/kstitch)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 # KStitch
