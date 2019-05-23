@@ -21,7 +21,7 @@
 
   "files":
   [
-    {"includePattern": "build/libs/(.*)", "uploadPattern": "fortytwoapps/ktitch/0.0.1/$1"}
+    {"includePattern": "build/libs/(.*)", "uploadPattern": "fortytwoapps/kstitch/0.0.1/$1"}
   ],
   "publish": true
 }
