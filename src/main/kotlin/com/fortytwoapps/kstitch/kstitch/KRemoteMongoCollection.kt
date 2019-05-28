@@ -23,7 +23,7 @@ import com.fortytwoapps.kstitch.util.jsObject
 import com.fortytwoapps.kstitch.util.toJSON
 import kotlin.js.Promise
 
-internal class KRemoteMongoCollection<T : Any>(var jsRemoteMongoCollection: RemoteMongoCollection<T>, var name: String) {
+class KRemoteMongoCollection<T : Any>(var jsRemoteMongoCollection: RemoteMongoCollection<T>, var name: String) {
 
     // aggregate
     fun aggregate(pipeline: Array<Any>) : RemoteMongoReadOperation<dynamic> {

@@ -19,7 +19,7 @@ package com.fortytwoapps.kstitch.kstitch
 import com.fortytwoapps.kstitch.browser.*
 
 class KRemoteMongoDatabase(var jsRemoteMongoDatabase: RemoteMongoDatabase) {
-    internal inline fun <reified T : Any> collection(name: String? = null): KRemoteMongoCollection<T> {
+    inline fun <reified T : Any> collection(name: String? = null): KRemoteMongoCollection<T> {
         return if (name != null) {
             KRemoteMongoCollection(jsRemoteMongoDatabase.collection(name), name)
         } else {

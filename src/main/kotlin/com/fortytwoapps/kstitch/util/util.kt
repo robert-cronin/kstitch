@@ -25,24 +25,24 @@ inline fun jsObject(init: dynamic.() -> Unit): dynamic {
     return obj
 }
 
-internal enum class QueryOperatorType {
+enum class QueryOperatorType {
     And,
     Or
 }
 
-internal infix fun <T, R> KMutableProperty1<T, R>.eq(value: dynamic): KStitchEqualPredicate {
+infix fun <T, R> KMutableProperty1<T, R>.eq(value: dynamic): KStitchEqualPredicate {
     return KStitchEqualPredicate(this.name, value)
 }
 
-internal infix fun <T, R> KMutableProperty1<T, R>.eqAnd(value: dynamic): KStitchEqualAndPredicate {
+infix fun <T, R> KMutableProperty1<T, R>.eqAnd(value: dynamic): KStitchEqualAndPredicate {
     return KStitchEqualAndPredicate(this.name, value)
 }
 
-internal infix fun <T, R> KMutableProperty1<T, R>.eqOr(value: dynamic): KStitchEqualOrPredicate {
+infix fun <T, R> KMutableProperty1<T, R>.eqOr(value: dynamic): KStitchEqualOrPredicate {
     return KStitchEqualOrPredicate(this.name, value)
 }
 
-internal fun Array<out KStitchQueryPredicate>.toJSON(): dynamic {
+fun Array<out KStitchQueryPredicate>.toJSON(): dynamic {
     val equalityAndPredicates = mutableListOf<dynamic>()
     val equalityOrPredicates = mutableListOf<dynamic>()
 

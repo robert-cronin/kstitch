@@ -17,13 +17,13 @@
 package com.fortytwoapps.kstitch.util
 
 
-internal open class KStitchQueryPredicate(var propertyName: String, var propertyValue: dynamic, internal open var operator:QueryOperatorType? = null)
+open class KStitchQueryPredicate(var propertyName: String, var propertyValue: dynamic, internal open var operator:QueryOperatorType? = null)
 
-internal class KStitchEqualAndPredicate(propertyName: String, propertyValue: dynamic): KStitchQueryPredicate(propertyName, propertyValue, QueryOperatorType.And)
+class KStitchEqualAndPredicate(propertyName: String, propertyValue: dynamic): KStitchQueryPredicate(propertyName, propertyValue, QueryOperatorType.And)
 
-internal class KStitchEqualOrPredicate(propertyName: String, propertyValue: dynamic): KStitchQueryPredicate(propertyName, propertyValue, QueryOperatorType.Or)
+class KStitchEqualOrPredicate(propertyName: String, propertyValue: dynamic): KStitchQueryPredicate(propertyName, propertyValue, QueryOperatorType.Or)
 
-internal class KStitchEqualPredicate(var propertyName: String, var propertyValue: dynamic){
+class KStitchEqualPredicate(var propertyName: String, var propertyValue: dynamic){
     fun toJSON(): dynamic {
         val obj = jsObject {}
         obj[propertyName] = propertyValue
