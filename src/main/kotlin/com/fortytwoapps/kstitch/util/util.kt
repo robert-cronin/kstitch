@@ -16,54 +16,9 @@
 
 package com.fortytwoapps.kstitch.util
 
-import kotlin.reflect.KMutableProperty1
-
 // Useful inline function for creating js objects
 inline fun jsObject(init: dynamic.() -> Unit): dynamic {
     val obj = js("{}")
     init(obj)
     return obj
-}
-
-enum class QueryOperatorType {
-    And,
-    Or
-}
-
-infix fun <T, R> KMutableProperty1<T, R>.eq(value: dynamic): KStitchEqualPredicate {
-    return KStitchEqualPredicate(this.name, value)
-}
-
-infix fun <T, R> KMutableProperty1<T, R>.eqAnd(value: dynamic): KStitchEqualAndPredicate {
-    return KStitchEqualAndPredicate(this.name, value)
-}
-
-infix fun <T, R> KMutableProperty1<T, R>.eqOr(value: dynamic): KStitchEqualOrPredicate {
-    return KStitchEqualOrPredicate(this.name, value)
-}
-
-fun Array<out KStitchQueryPredicate>.toJSON(): dynamic {
-    val equalityAndPredicates = mutableListOf<dynamic>()
-    val equalityOrPredicates = mutableListOf<dynamic>()
-
-    this.forEach { predicate ->
-        val obj = jsObject { }
-        obj[predicate.propertyName] = predicate.propertyValue
-        when (predicate.operator) {
-            QueryOperatorType.And -> {
-                equalityAndPredicates.add(obj)
-            }
-            QueryOperatorType.Or -> {
-                equalityOrPredicates.add(obj)
-            }
-        }
-    }
-    val jsonQuery = jsObject{}
-    if (equalityAndPredicates.isNotEmpty()) {
-        jsonQuery["\$and"] = equalityAndPredicates
-    }
-    if (equalityOrPredicates.isNotEmpty()) {
-        jsonQuery["\$or"] = equalityOrPredicates
-    }
-    return jsonQuery
 }

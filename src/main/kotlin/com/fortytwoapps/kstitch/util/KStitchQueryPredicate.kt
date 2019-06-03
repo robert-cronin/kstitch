@@ -16,6 +16,8 @@
 
 package com.fortytwoapps.kstitch.util
 
+import kotlin.reflect.KMutableProperty1
+
 
 open class KStitchQueryPredicate(var propertyName: String, var propertyValue: dynamic, internal open var operator:QueryOperatorType? = null)
 
@@ -29,4 +31,48 @@ class KStitchEqualPredicate(var propertyName: String, var propertyValue: dynamic
         obj[propertyName] = propertyValue
         return obj
     }
+}
+
+enum class QueryOperatorType {
+    And,
+    Or
+}
+
+// Query predicates
+infix fun <T, R> KMutableProperty1<T, R>.eq(value: dynamic): KStitchEqualPredicate {
+    return KStitchEqualPredicate(this.name, value)
+}
+
+infix fun <T, R> KMutableProperty1<T, R>.eqAnd(value: dynamic): KStitchEqualAndPredicate {
+    return KStitchEqualAndPredicate(this.name, value)
+}
+
+infix fun <T, R> KMutableProperty1<T, R>.eqOr(value: dynamic): KStitchEqualOrPredicate {
+    return KStitchEqualOrPredicate(this.name, value)
+}
+
+fun List<KStitchQueryPredicate>.toJSON(): dynamic {
+    val equalityAndPredicates = mutableListOf<dynamic>()
+    val equalityOrPredicates = mutableListOf<dynamic>()
+
+    this.forEach { predicate ->
+        val obj = jsObject { }
+        obj[predicate.propertyName] = predicate.propertyValue
+        when (predicate.operator) {
+            QueryOperatorType.And -> {
+                equalityAndPredicates.add(obj)
+            }
+            QueryOperatorType.Or -> {
+                equalityOrPredicates.add(obj)
+            }
+        }
+    }
+    val jsonQuery = jsObject{}
+    if (equalityAndPredicates.isNotEmpty()) {
+        jsonQuery["\$and"] = equalityAndPredicates
+    }
+    if (equalityOrPredicates.isNotEmpty()) {
+        jsonQuery["\$or"] = equalityOrPredicates
+    }
+    return jsonQuery
 }

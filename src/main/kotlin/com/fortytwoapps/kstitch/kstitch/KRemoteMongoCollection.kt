@@ -17,10 +17,7 @@
 package com.fortytwoapps.kstitch.kstitch
 
 import com.fortytwoapps.kstitch.browser.*
-import com.fortytwoapps.kstitch.util.KStitchEqualPredicate
-import com.fortytwoapps.kstitch.util.KStitchQueryPredicate
-import com.fortytwoapps.kstitch.util.jsObject
-import com.fortytwoapps.kstitch.util.toJSON
+import com.fortytwoapps.kstitch.util.*
 import kotlin.js.Promise
 
 class KRemoteMongoCollection<T : Any>(var jsRemoteMongoCollection: RemoteMongoCollection<T>, var name: String) {
@@ -31,13 +28,13 @@ class KRemoteMongoCollection<T : Any>(var jsRemoteMongoCollection: RemoteMongoCo
     }
 
     // count
-    fun count(vararg query: KStitchQueryPredicate, options: RemoteCountOptions): Promise<Int> {
+    fun count(query: List<KStitchQueryPredicate>, options: RemoteCountOptions): Promise<Int> {
         return jsRemoteMongoCollection.count(query.toJSON(), options)
     }
     fun count(query: KStitchEqualPredicate, options: RemoteCountOptions): Promise<Int> {
         return jsRemoteMongoCollection.count(query.toJSON(), options)
     }
-    fun count(vararg query: KStitchQueryPredicate): Promise<Int> {
+    fun count(query: List<KStitchQueryPredicate>): Promise<Int> {
         return jsRemoteMongoCollection.count(query.toJSON())
     }
     fun count(query: KStitchEqualPredicate): Promise<Int> {
@@ -51,7 +48,7 @@ class KRemoteMongoCollection<T : Any>(var jsRemoteMongoCollection: RemoteMongoCo
     }
 
     // deleteMany
-    fun deleteMany(vararg query: KStitchQueryPredicate): Promise<RemoteDeleteResult> {
+    fun deleteMany(query: List<KStitchQueryPredicate>): Promise<RemoteDeleteResult> {
         return jsRemoteMongoCollection.deleteMany(query.toJSON())
     }
     fun deleteMany(query: KStitchEqualPredicate): Promise<RemoteDeleteResult> {
@@ -62,7 +59,7 @@ class KRemoteMongoCollection<T : Any>(var jsRemoteMongoCollection: RemoteMongoCo
     }
 
     // deleteOne
-    fun deleteOne(vararg query: KStitchQueryPredicate): Promise<RemoteDeleteResult> {
+    fun deleteOne(query: List<KStitchQueryPredicate>): Promise<RemoteDeleteResult> {
         return jsRemoteMongoCollection.deleteOne(query.toJSON())
     }
     fun deleteOne(query: KStitchEqualPredicate): Promise<RemoteDeleteResult> {
@@ -73,7 +70,7 @@ class KRemoteMongoCollection<T : Any>(var jsRemoteMongoCollection: RemoteMongoCo
     }
 
     // find
-    fun find(vararg query: KStitchQueryPredicate): Promise<List<T>> {
+    fun find(query: List<KStitchQueryPredicate>): Promise<List<T>> {
         return jsRemoteMongoCollection.find(query.toJSON())
             .asArray()
             .then { documents -> documents.toList<T>() }
@@ -90,7 +87,7 @@ class KRemoteMongoCollection<T : Any>(var jsRemoteMongoCollection: RemoteMongoCo
     }
 
     // findOne
-    fun findOne(vararg query: KStitchQueryPredicate): Promise<T?> {
+    fun findOne(query: List<KStitchQueryPredicate>): Promise<T?> {
         return jsRemoteMongoCollection.findOne(query.toJSON())
             .then<dynamic> { document -> document as? T }
     }
@@ -106,7 +103,7 @@ class KRemoteMongoCollection<T : Any>(var jsRemoteMongoCollection: RemoteMongoCo
     }
 
     // findOneAndDelete
-    fun findOneAndDelete(vararg query: KStitchQueryPredicate): Promise<dynamic> {
+    fun findOneAndDelete(query: List<KStitchQueryPredicate>): Promise<dynamic> {
         return jsRemoteMongoCollection.findOneAndDelete(query.toJSON())
     }
     fun findOneAndDelete(query: KStitchEqualPredicate): Promise<dynamic> {
@@ -128,11 +125,21 @@ class KRemoteMongoCollection<T : Any>(var jsRemoteMongoCollection: RemoteMongoCo
     }
 
     // findOneAndUpdate
-    fun findOneAndUpdate(query: dynamic, update: dynamic, options: RemoteFindOneAndModifyOptions) : Promise<dynamic> {
-        return jsRemoteMongoCollection.findOneAndUpdate(query, update, options)
+    fun findOneAndUpdate(query: List<KStitchQueryPredicate>, update: List<KStitchUpdatePredicate>, options: RemoteFindOneAndModifyOptions): Promise<T?> {
+        return jsRemoteMongoCollection.findOneAndUpdate(query.toJSON(), update.toJSON(), options)
+            .then<dynamic> { document -> document as? T }
     }
-    fun findOneAndUpdate(query:dynamic, update: dynamic) : Promise<dynamic> {
-        return jsRemoteMongoCollection.findOneAndUpdate(query, update)
+    fun findOneAndUpdate(query: KStitchEqualPredicate, update: List<KStitchUpdatePredicate>, options: RemoteFindOneAndModifyOptions): Promise<T?> {
+        return jsRemoteMongoCollection.findOneAndUpdate(query.toJSON(), update.toJSON(), options)
+            .then<dynamic> { document -> document as? T }
+    }
+    fun findOneAndUpdate(query: List<KStitchQueryPredicate>, update: List<KStitchUpdatePredicate>): Promise<T?> {
+        return jsRemoteMongoCollection.findOneAndUpdate(query.toJSON(), update.toJSON())
+            .then<dynamic> { document -> document as? T }
+    }
+    fun findOneAndUpdate(query: KStitchEqualPredicate, update: List<KStitchUpdatePredicate>): Promise<T?> {
+        return jsRemoteMongoCollection.findOneAndUpdate(query.toJSON(), update.toJSON())
+            .then<dynamic> { document -> document as? T }
     }
 
     // insertMany
