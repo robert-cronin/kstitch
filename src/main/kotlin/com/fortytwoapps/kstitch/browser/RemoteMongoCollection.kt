@@ -34,19 +34,19 @@ external interface RemoteMongoCollection<T> {
     // deleteOne
     fun deleteOne(query: dynamic): Promise<RemoteDeleteResult>
     // find
-    fun find(query: dynamic, options: RemoteFindOptions): RemoteMongoReadOperation<dynamic>
+    fun find(query: dynamic, options: dynamic): RemoteMongoReadOperation<dynamic>
     fun find(query: dynamic): RemoteMongoReadOperation<dynamic>
     // findOne
-    fun findOne(query: dynamic, options: RemoteFindOptions): Promise<dynamic>
+    fun findOne(query: dynamic, options: dynamic): Promise<dynamic>
     fun findOne(query: dynamic): Promise<dynamic>
     // findOneAndDelete
-    fun findOneAndDelete(query: dynamic, options: RemoteFindOneAndModifyOptions): Promise<dynamic>
+    fun findOneAndDelete(query: dynamic, options: dynamic): Promise<dynamic>
     fun findOneAndDelete(query: dynamic): Promise<dynamic>
     // findOneAndReplace
-    fun findOneAndReplace(query: dynamic, replacement: dynamic, options: RemoteFindOneAndModifyOptions): Promise<dynamic>
+    fun findOneAndReplace(query: dynamic, replacement: dynamic, options: dynamic): Promise<dynamic>
     fun findOneAndReplace(query: dynamic, replacement: dynamic): Promise<dynamic>
     // findOneAndReplace
-    fun findOneAndUpdate(query: dynamic, update: dynamic, options: RemoteFindOneAndModifyOptions): Promise<dynamic>
+    fun findOneAndUpdate(query: dynamic, update: dynamic, options: dynamic): Promise<dynamic>
     fun findOneAndUpdate(query: dynamic, update: dynamic): Promise<dynamic>
     // insertMany
     fun insertMany(documents: dynamic): Promise<RemoteInsertManyResult>

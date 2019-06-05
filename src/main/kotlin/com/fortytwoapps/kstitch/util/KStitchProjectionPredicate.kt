@@ -14,15 +14,23 @@
  * limitations under the License.
  */
 
-@file:JsModule("mongodb-stitch-browser-sdk")
-@file:JsNonModule
-package com.fortytwoapps.kstitch.browser
+package com.fortytwoapps.kstitch.util
 
-import com.fortytwoapps.kstitch.browser.core.services.NamedServiceClientFactory
+import kotlin.reflect.KMutableProperty1
 
-external class RemoteFindOneAndModifyOptions {
-    val projection:dynamic = definedExternally
-    val returnNewDocument:Boolean = definedExternally
-    val sort:dynamic = definedExternally
-    val upsert:Boolean = definedExternally
+class KStitchProjectionPredicate(var propertyName: String, var projected: Boolean)
+
+// Projection predicates
+infix fun <T, R> KMutableProperty1<T, R>.project(value: Boolean): KStitchProjectionPredicate {
+    return KStitchProjectionPredicate(this.name, value)
+}
+
+fun List<KStitchProjectionPredicate>.toJSON(): dynamic {
+    val projectionObject = jsObject {  }
+
+    this.forEach { predicate ->
+        projectionObject[predicate.propertyName] = if (predicate.projected) 1 else 0
+    }
+
+    return projectionObject
 }
