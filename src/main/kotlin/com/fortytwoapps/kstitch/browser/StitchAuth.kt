@@ -22,18 +22,20 @@ import kotlin.js.Promise
 
 external interface StitchAuth {
     var isLoggedIn: Boolean
-    var user: com.fortytwoapps.kstitch.browser.StitchUser
+    var user: StitchUser
+
+    fun getProviderClient(factory: dynamic): UserPasswordAuthProviderClient
 
 //    fun addAuthListener(listener: StitchAuthListener): Any
-    fun handleRedirectResult(): Promise<com.fortytwoapps.kstitch.browser.StitchUser>
+    fun handleRedirectResult(): Promise<StitchUser>
     fun hasRedirectResult(): Boolean
-    fun listUsers(): List<com.fortytwoapps.kstitch.browser.StitchUser>
-    fun loginWithCredential(credential: com.fortytwoapps.kstitch.browser.StitchCredential): Promise<com.fortytwoapps.kstitch.browser.StitchUser>
+    fun listUsers(): List<StitchUser>
+    fun loginWithCredential(credential: StitchCredential): Promise<StitchUser>
 //    fun loginWithRedirect(credential: StitchRedirectCredential)
     fun logout(): Promise<dynamic>
     fun logoutUserWithId(userId: String): Promise<dynamic>
 //    fun removeAuthListener(listener: StitchAuthListener): Any
     fun removeUser(): Promise<dynamic>
     fun removeUserWithId(userId: String): Promise<dynamic>
-    fun switchToUserWithId(userId: String): com.fortytwoapps.kstitch.browser.StitchUser
+    fun switchToUserWithId(userId: String): StitchUser
 }

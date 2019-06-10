@@ -18,15 +18,18 @@
 @file:JsNonModule
 package com.fortytwoapps.kstitch.browser
 
-import com.fortytwoapps.kstitch.browser.core.services.NamedServiceClientFactory
 import kotlin.js.Promise
 
-external interface StitchAppClient {
-    var auth: StitchAuth
+external class UserPasswordAuthProviderClient {
+    companion object {
+        val factory:dynamic = definedExternally
+    }
 
-    fun callFunction(name: String, args: List<Any?>): Promise<Any>
-    fun getGeneralServiceClient(serviceName: String): StitchServiceClient
-    fun <T> getServiceClient(factory: NamedServiceClientFactory<T>, serviceName: String): T
-//    fun <T> getServiceClient(factory: ServiceClientFactory<T>): T
+    fun confirmUser(token: String, tokenId: String): Promise<Unit>
 
+    fun registerWithEmail(email: String, password: String): Promise<Unit>
+
+    fun resetPassword(token: String, tokenId: String, password: String): Promise<Unit>
+
+    fun sendResetPasswordEmail(email: String): Promise<Unit>
 }

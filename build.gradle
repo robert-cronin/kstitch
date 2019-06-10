@@ -19,7 +19,7 @@ apply plugin: 'kotlinx-serialization'
 apply plugin: 'maven-publish'
 
 group 'com.fortytwoapps'
-version '0.0.4'
+version '0.0.5'
 
 publishing {
     publications {
@@ -40,7 +40,7 @@ publishing {
 
 model {
     tasks.generatePomFileForMavenPublication {
-        destination = file("$buildDir/libs/kstitch-0.0.4.pom")
+        destination = file("$buildDir/libs/kstitch-0.0.5.pom")
     }
 }
 

@@ -26,6 +26,7 @@ class KStitchAppClient(private val stitchAppClient: StitchAppClient) {
     fun callFunction(name: String, args: List<Any?>): Promise<Any> {
         return stitchAppClient.callFunction(name, args)
     }
+
     fun getGeneralServiceClient(serviceName: String): StitchServiceClient {
         return stitchAppClient.getGeneralServiceClient(serviceName)
     }
