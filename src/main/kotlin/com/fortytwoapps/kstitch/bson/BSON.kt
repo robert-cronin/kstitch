@@ -20,7 +20,7 @@
 
 package com.fortytwoapps.kstitch.bson
 
-import kotlinx.io.ByteBuffer
+//import kotlinx.io.ByteBuffer
 import kotlin.Double
 import kotlin.js.Json
 
@@ -36,11 +36,11 @@ external class ObjectID {
     fun toJSON(): Json
 }
 
-external class Binary(buffer: ByteBuffer) {
-    var buffer: ByteBuffer
-
-    fun toJSON(): Json
-}
+//external class Binary(buffer: ByteBuffer) {
+//    var buffer: ByteBuffer
+//
+//    fun toJSON(): Json
+//}
 
 external class Code(code: String, scope: dynamic = definedExternally) {
     var code: String
