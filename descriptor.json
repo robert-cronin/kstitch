@@ -14,14 +14,14 @@
   },
 
   "version": {
-    "name": "0.0.6",
-    "released": "2019-06-24",
+    "name": "0.0.7",
+    "released": "2019-06-28",
     "gpgSign": false
   },
 
   "files":
   [
-    {"includePattern": "build/libs/(.*)", "uploadPattern": "fortytwoapps/kstitch/0.0.6/$1"}
+    {"includePattern": "build/libs/(.*)", "uploadPattern": "fortytwoapps/kstitch/0.0.7/$1"}
   ],
   "publish": true
 }

@@ -80,6 +80,11 @@ class KRemoteMongoCollection<T : Any>(var jsRemoteMongoCollection: RemoteMongoCo
             .asArray()
             .then { documents -> documents.toList<T>() }
     }
+    fun find(query: KStitchInPredicate): Promise<List<T>> {
+        return jsRemoteMongoCollection.find(query.toJSON())
+            .asArray()
+            .then { documents -> documents.toList<T>() }
+    }
     fun find(query:dynamic = jsObject{}): Promise<List<T>> {
         return jsRemoteMongoCollection.find(query)
             .asArray()
@@ -92,6 +97,11 @@ class KRemoteMongoCollection<T : Any>(var jsRemoteMongoCollection: RemoteMongoCo
             .then { documents -> documents.toList<T>() }
     }
     fun find(query: KStitchEqualPredicate, options: KRemoteFindOptions): Promise<List<T>> {
+        return jsRemoteMongoCollection.find(query.toJSON(), options)
+            .asArray()
+            .then { documents -> documents.toList<T>() }
+    }
+    fun find(query: KStitchInPredicate, options: KRemoteFindOptions): Promise<List<T>> {
         return jsRemoteMongoCollection.find(query.toJSON(), options)
             .asArray()
             .then { documents -> documents.toList<T>() }
