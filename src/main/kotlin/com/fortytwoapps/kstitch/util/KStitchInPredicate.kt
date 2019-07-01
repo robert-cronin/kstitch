@@ -26,9 +26,6 @@ class KStitchInPredicate(var propertyName: String, var propertyValue: List<dynam
         subObj["${"$"}in"] = propertyValue
         obj[propertyName] = subObj
 
-        console.log("omgggggg")
-        console.log(subObj)
-        console.log(obj)
         return obj
     }
 }
