@@ -17,7 +17,7 @@ apply plugin: 'org.jetbrains.kotlin.frontend'
 apply plugin: 'maven-publish'
 
 group 'com.fortytwoapps'
-version '0.0.7'
+version '0.0.8'
 
 publishing {
     publications {
@@ -38,7 +38,7 @@ publishing {
 
 model {
     tasks.generatePomFileForMavenPublication {
-        destination = file("$buildDir/libs/kstitch-0.0.7.pom")
+        destination = file("$buildDir/libs/kstitch-0.0.8.pom")
     }
 }
 
@@ -55,7 +55,7 @@ dependencies {
 
 kotlinFrontend {
     npm {
-        dependency("mongodb-stitch-browser-sdk", "4.3.1")
+        dependency("mongodb-stitch-browser-sdk", "4.4.1")
         devDependency("karma", "3.1.4")
         devDependency("karma-chrome-launcher", "2.2.0")
     }
