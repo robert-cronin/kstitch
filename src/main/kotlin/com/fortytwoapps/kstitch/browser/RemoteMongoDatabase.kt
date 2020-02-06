@@ -21,5 +21,5 @@ package com.fortytwoapps.kstitch.browser
 external interface RemoteMongoDatabase {
     var name: String
 
-    fun <T> collection(name: String): com.fortytwoapps.kstitch.browser.RemoteMongoCollection<T>
+    fun <T> collection(name: String): RemoteMongoCollection<T>
 }

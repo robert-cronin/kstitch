@@ -22,7 +22,7 @@ import com.fortytwoapps.kstitch.browser.core.services.NamedServiceClientFactory
 
 external class RemoteMongoClient {
     companion object {
-        var factory: com.fortytwoapps.kstitch.browser.core.services.NamedServiceClientFactory<com.fortytwoapps.kstitch.browser.RemoteMongoClient>
+        var factory: NamedServiceClientFactory<RemoteMongoClient>
     }
-    fun db(name: String): com.fortytwoapps.kstitch.browser.RemoteMongoDatabase
+    fun db(name: String): RemoteMongoDatabase
 }

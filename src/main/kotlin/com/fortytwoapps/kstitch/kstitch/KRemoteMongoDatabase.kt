@@ -23,7 +23,7 @@ class KRemoteMongoDatabase(var jsRemoteMongoDatabase: RemoteMongoDatabase) {
         return if (name != null) {
             KRemoteMongoCollection(jsRemoteMongoDatabase.collection(name), name)
         } else {
-            KRemoteMongoCollection(jsRemoteMongoDatabase.collection(T::class.js.name.toLowerCase()), T::class.js.name.toLowerCase())
+            KRemoteMongoCollection(jsRemoteMongoDatabase.collection(T::class.js.name.decapitalize()), T::class.js.name.toLowerCase())
         }
     }
 }

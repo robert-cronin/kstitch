@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/fortytwoapps/kstitch.svg?branch=master)](https://travis-ci.org/fortytwoapps/kstitch)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 # KStitch
-A Kotlin/JS Toolkit for the MongoDB Stitch API. This tool kit will also support an ODM (Object Document Mapper) in the future, watch this space!
+A KotlinJS Toolkit for the MongoDB Stitch API. This tool kit will also support an ODM (Object Document Mapper) in the future, watch this space!
 
 Heavily inspired by KMongo: https://github.com/Litote/kmongo
 
@@ -18,13 +18,13 @@ git clone https://github.com/fortytwoapps/kstitch.git
 
 To setup KStitch and start using it in your project, add these lines to build.gradle:
 
-```
+```gradle
 repositories {
     maven { url = "https://dl.bintray.com/robert-cronin/fortytwoapps" }
 }
 
 dependencies {
-    implementation "fortytwoapps:kstitch:0.0.1"
+    implementation "fortytwoapps:kstitch:4.9.0"
 }
 ```
 
@@ -75,11 +75,36 @@ exports = function(arg) {
 
 #### BSON and Extended JSON
 
-Coming soon!
+KStitch now comes with BSON support:
+
+```kotlin
+import com.fortytwoapps.kstitch.bson.ObjectID
+
+val newId = ObjectID()
+```
 
 #### ODM Functionaltiy
 
-Coming soon!
+Define a Kotlin class and use it in Stitch!
+
+```kotlin
+class User(
+        var _id: ObjectID = "",
+        var adminUser: Boolean = false,
+        var email: String = "",
+        var fullName: String = "",
+        var age: Int = 18,
+        var customFunction: Code = Code("console.log('Hello World')")
+)
+
+val mongoClient = client.getRemoteServiceClient("<your-service-name>")
+val userDatabase = mongoClient.db("user")
+val userDataCollection = userDatabase.collection<User>("userData")
+
+val specificUser: User = userDataCollection.find(UserData::_id eq ObjectID("5e13f16fb3de4f44ccb386e8")).await().firstOrNull()
+
+val adminUserList: List<User> = userDataCollection.find(UserData::adminUser eq true).await()
+```
 
 ## Built With
 
