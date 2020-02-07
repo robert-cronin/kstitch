@@ -16,3 +16,8 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+src/main/kotlin/com/fortytwoapps/kstitch/main.kt
+src/main/web/index.jsp
+src/main/web/index.html
+karma.config.d/proxy.js
+karma.config.d/placeholder.js
