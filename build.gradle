@@ -17,7 +17,7 @@ apply plugin: 'org.jetbrains.kotlin.frontend'
 apply plugin: 'maven-publish'
 
 group 'com.fortytwoapps'
-version '4.7.1'
+version '4.9.0'
 
 publishing {
     publications {

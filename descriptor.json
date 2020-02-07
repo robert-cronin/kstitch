@@ -15,13 +15,13 @@
 
   "version": {
     "name": "4.9.0",
-    "released": "2019-07-02",
+    "released": "2020-02-07",
     "gpgSign": false
   },
 
   "files":
   [
-    {"includePattern": "build/libs/(.*)", "uploadPattern": "fortytwoapps/kstitch/4.7.1/$1"}
+    {"includePattern": "build/libs/(.*)", "uploadPattern": "fortytwoapps/kstitch/4.9.0/$1"}
   ],
   "publish": true
 }
