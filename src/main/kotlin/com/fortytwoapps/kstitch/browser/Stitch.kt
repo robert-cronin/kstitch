@@ -20,7 +20,7 @@ package com.fortytwoapps.kstitch.browser
 
 external class Stitch {
     companion object {
-        fun defaultAppClient(): com.fortytwoapps.kstitch.browser.StitchAppClient
-        fun initializeDefaultAppClient(clientAppId: String, config: com.fortytwoapps.kstitch.browser.StitchAppClientConfiguration? = definedExternally): com.fortytwoapps.kstitch.browser.StitchAppClient
+        fun defaultAppClient(): StitchAppClient
+        fun initializeDefaultAppClient(clientAppId: String, config: StitchAppClientConfiguration? = definedExternally): StitchAppClient
     }
 }
