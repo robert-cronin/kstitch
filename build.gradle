@@ -59,6 +59,15 @@ kotlinFrontend {
         devDependency("karma", "3.1.4")
         devDependency("karma-chrome-launcher", "2.2.0")
     }
+//    webpackBundle {
+//        bundleName = "main"
+//        contentPath = file('src/main/web')
+//        mode = "development"
+//    }
+//    karma {
+//        plugins = ["karma-chrome-launcher"]
+//        browsers = ["ChromeHeadless"]
+//    }
 }
 
 compileKotlin2Js {
@@ -83,3 +92,9 @@ task copyResourcesForTests(type: Copy) {
     into file(buildDir.path + "/js-tests/")
 }
 
+//afterEvaluate {
+//    tasks.getByName("webpack-bundle") { dependsOn(copyResources) }
+//    tasks.getByName("webpack-run") { dependsOn(copyResources) }
+//    tasks.getByName("test") { dependsOn(copyResources, copyResourcesForTests) }
+//    tasks.getByName("karma-start") { dependsOn(copyResources, copyResourcesForTests) }
+//}
